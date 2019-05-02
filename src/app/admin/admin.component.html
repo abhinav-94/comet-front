@@ -1,0 +1,81 @@
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+
+      <div class="card-header">
+        <h3 class="mb-0">Admin</h3>
+      </div>
+
+      <div class="card-body">
+        <form class="form" >
+
+          <div class="form-group">
+            <label for="">Tag to be searched</label>
+            <input [(ngModel)]="tag.tagName" name="tagName" type="text" class="form-control rounded-0" required>
+          </div>
+          <button (click)="search()" type="button" class="btn btn-primary float-center">Search</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<style >
+  table {
+      counter-reset: tableCount;
+      table-layout:fixed;
+      margin:0;
+      padding:0;
+  }
+  table td{
+    word-wrap:break-word
+  }
+  tr {
+    margin:0;
+    padding:0;
+  }
+  .own:before {
+      content: counter(tableCount);
+      counter-increment: tableCount;
+  }
+  .toggle{
+    text-decoration: underline,
+  }
+</style>
+
+
+  <br>
+  <h3 >Time Taken : {{time}} ms </h3>
+  <h3 >Related Tags : <a  (click)="newSearch(sTag)" style="color:black" style="cursor: pointer" *ngFor="let sTag of suggestedTags" >       {{sTag}}      </a></h3>
+  <br>
+  <br>
+
+
+  <table class="table" >
+    <thead >
+      <tr>
+        <th scope="col" width="4%">#</th>
+        <th scope="col" width="26%">Title</th>
+        <th scope="col" width="10%">URL</th>
+        <th scope="col" width="30%">Creator</th>
+        <th scope="col" width="10%">Duration</th>
+        <th scope="col" width="10%">Time</th>
+        <th scope="col" width="10%">Responses</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let article of Articles ">
+      <tr>
+        <td class="own"></td>
+        <td >{{article.title}}</td>
+        <td><a style="text-decoration: underline;color: blue;" id="uurl" href="{{article.url}}" target="_blank" >{{article.url}}</a></td>
+        <td >{{article.creator}}</td>
+        <td >{{article.duration}}</td>
+        <td >{{article.time}}</td>
+        <td >{{article.responses}}</td>
+      </tr>
+    </tbody>
+  </table>
